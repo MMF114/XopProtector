@@ -371,7 +371,7 @@ public class ProxyApplication extends Application {
                     // missing ping and crash the process itself.
                 }
             }
-        }, "protector-hb");
+        }, "core-hb");
         t.setDaemon(true);
         t.start();
     }
@@ -578,7 +578,7 @@ public class ProxyApplication extends Application {
         deleteDir(new File(outDir, "so_cipher"));
         deleteDir(new File(outDir, "so_warm"));
         deleteQuietly(stampFile);
-        Log.i(TAG, "protector cache invalidated for new APK");
+        Log.i(TAG, "core cache invalidated for new APK");
     }
 
     /** Remove leftover classes*.dex under the protector code-cache dir. */
