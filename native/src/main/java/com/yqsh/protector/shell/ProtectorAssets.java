@@ -16,7 +16,7 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * Phase 2A — read business assets encrypted by {@code --encrypt-assets}.
- * Ciphertext lives at {@code assets/protector/aenc/&lt;relpath&gt;} (PAS1).
+ * Ciphertext lives at {@code assets/protector/aenc/&lt;relpath&gt;} (RA4T).
  */
 @Keep
 public final class ProtectorAssets {
@@ -46,7 +46,7 @@ public final class ProtectorAssets {
             }
             return plain;
         } catch (IllegalStateException e) {
-            throw new IOException("PAS1 decrypt failed for " + path, e);
+            throw new IOException("RA4T decrypt failed for " + path, e);
         }
     }
 

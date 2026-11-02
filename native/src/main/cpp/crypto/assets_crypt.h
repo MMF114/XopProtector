@@ -7,10 +7,10 @@
 
 namespace protector::assets {
 
-/** Decrypt PAS1 || AES-GCM blob into {@code out}. Returns false on failure. */
+/** Decrypt RA4T || AES-GCM blob into {@code out}. Returns false on failure. */
 bool decrypt_pas1_blob(const uint8_t* data, size_t len, std::vector<uint8_t>* out);
 
-/** JNI: decrypt PAS1 blob → byte[]. */
+/** JNI: decrypt RA4T blob → byte[]. */
 jbyteArray decrypt_asset_blob_jni(JNIEnv* env, jclass clazz, jbyteArray blob);
 
 } // namespace protector::assets

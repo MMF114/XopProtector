@@ -64,7 +64,7 @@ struct ShellConfig {
     uint32_t insns_xor_key = 0;
     /** 16-byte AES-128 key for code.bin GCM payloads. */
     std::vector<uint8_t> insns_aes_key;
-    /** 16-byte AES-128 key for assets/protector/dexes.zip (PDX1 wrapper). */
+    /** 16-byte AES-128 key for assets/protector/dexes.zip (QZ7M wrapper). */
     std::vector<uint8_t> dex_aes_key;
     /** 16-byte AES-128 key wrapping sokeys.bin (PSOK). */
     std::vector<uint8_t> so_aes_key;
@@ -73,7 +73,7 @@ struct ShellConfig {
      * Kept for process lifetime (hydrate + write); not wiped with so_aes_key.
      */
     std::vector<uint8_t> so_warm_key;
-    /** 16-byte AES-128 key for PAS1 encrypted app assets (protector/aenc). */
+    /** 16-byte AES-128 key for RA4T encrypted app assets (protector/aenc). */
     std::vector<uint8_t> assets_aes_key;
     /** 32-byte HMAC-SHA256 key for config.json. */
     std::vector<uint8_t> hmac_key;
@@ -113,7 +113,7 @@ struct ShellConfig {
      * Default 32. Missing field → 32.
      */
     int vmp_lru = 32;
-    /** HMAC-SHA256 hex of APK PDX1 {@code dexes.zip} bytes ({@code config.dex_hmac}). */
+    /** HMAC-SHA256 hex of APK QZ7M {@code dexes.zip} bytes ({@code config.dex_hmac}). */
     std::string dex_hmac;
     /** HMAC-SHA256 hex of {@code code.bin} file bytes ({@code config.code_hmac}). */
     std::string code_hmac;

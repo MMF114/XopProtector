@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 
 /**
  * Phase 2A — encrypt app {@code assets/**} (excluding {@code assets/protector/**}).
- * Ciphertext layout: {@code assets/protector/aenc/<relpath>} = {@code PAS1 || AES-GCM}.
+ * Ciphertext layout: {@code assets/protector/aenc/<relpath>} = {@code RA4T || AES-GCM}.
  * Index: {@code assets/protector/assets.map} (one relative path per line).
  */
 public final class AssetsEncryptor {

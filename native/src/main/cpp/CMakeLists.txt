@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22.1)
-project(protector)
+project(core)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -35,7 +35,7 @@ if (NOT TARGET dobby)
     add_subdirectory(${DOBBY_DIR} dobby)
 endif()
 
-add_library(protector SHARED
+add_library(core SHARED
         common/runtime_state.cpp
         common/crc32.cpp
         common/elf_util.cpp
@@ -63,26 +63,26 @@ add_library(protector SHARED
         so/business_so.cpp
 )
 
-target_include_directories(protector PRIVATE
+target_include_directories(core PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}
         ${CMAKE_CURRENT_SOURCE_DIR}/external/Dobby/include
         ${CMAKE_CURRENT_SOURCE_DIR}/external/bhook/bytehook/src/main/cpp/include
         ${CMAKE_CURRENT_SOURCE_DIR}/external/json
 )
 
-target_compile_options(protector PRIVATE -Wall -Wextra)
+target_compile_options(core PRIVATE -Wall -Wextra)
 # Hi-MC field tablets are often pre-ARMv8.3; paciasp/BTI → SIGILL on load.
 # Keep ROP hardening off until we gate by HWCAP_AP at runtime.
 if (CMAKE_ANDROID_ARCH_ABI STREQUAL "arm64-v8a")
-    target_compile_options(protector PRIVATE -mbranch-protection=none)
+    target_compile_options(core PRIVATE -mbranch-protection=none)
 endif()
-target_link_options(protector PRIVATE "-Wl,-z,max-page-size=16384")
+target_link_options(core PRIVATE "-Wl,-z,max-page-size=16384")
 
 find_library(log-lib log)
 find_library(android-lib android)
 find_library(z-lib z)
 
-target_link_libraries(protector
+target_link_libraries(core
         ${log-lib}
         ${android-lib}
         ${z-lib}
@@ -91,22 +91,22 @@ target_link_libraries(protector
 )
 
 # Always decrypt .bitcode at load; packer encrypts libprotector.so before packaging.
-target_compile_definitions(protector PRIVATE DECRYPT_BITCODE=1)
+target_compile_definitions(core PRIVATE DECRYPT_BITCODE=1)
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-    target_compile_definitions(protector PRIVATE DEBUG=1)
+    target_compile_definitions(core PRIVATE DEBUG=1)
 else()
-    target_compile_definitions(protector PRIVATE NDEBUG=1)
+    target_compile_definitions(core PRIVATE NDEBUG=1)
 endif()
 
 # Phase 7 — source-level CFF/BCF (default ON) + optional LLVM passes on sensitive TUs.
 if (PROTECTOR_SRC_OBF)
-    target_compile_definitions(protector PRIVATE PROTECTOR_SRC_OBF=1)
+    target_compile_definitions(core PRIVATE PROTECTOR_SRC_OBF=1)
     message(STATUS "PROTECTOR_SRC_OBF=ON")
 else()
-    target_compile_definitions(protector PRIVATE PROTECTOR_SRC_OBF=0)
+    target_compile_definitions(core PRIVATE PROTECTOR_SRC_OBF=0)
     message(STATUS "PROTECTOR_SRC_OBF=OFF")
 endif()
-protector_apply_llvm_obf(protector)
+protector_apply_llvm_obf(core)
 
 enable_language(ASM)

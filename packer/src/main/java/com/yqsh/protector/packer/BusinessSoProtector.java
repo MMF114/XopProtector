@@ -45,7 +45,7 @@ public final class BusinessSoProtector {
 
     /** Always skip — shell / hook runtime shipped with the protector. */
     private static final String[] SHELL_SKIP = {
-            "libprotector.so", "libshadowhook.so", "libshadowhook_nothing.so",
+            "libcore.so", "libshadowhook.so", "libshadowhook_nothing.so",
             "libc++_shared.so", "libdobby.so"
     };
 

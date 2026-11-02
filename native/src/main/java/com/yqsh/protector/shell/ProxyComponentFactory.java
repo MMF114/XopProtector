@@ -141,7 +141,7 @@ public class ProxyComponentFactory extends AppComponentFactory {
             }
             ProxyApplication.writeStamp(codeCache, apk);
 
-            System.loadLibrary("protector");
+            System.loadLibrary("core");
             // Packaged extract dir — must be set before initApp materialize (before redirect).
             if (aInfo.nativeLibraryDir != null) {
                 JniBridge.setNativeLibraryDir(aInfo.nativeLibraryDir);
@@ -177,7 +177,7 @@ public class ProxyComponentFactory extends AppComponentFactory {
 
         /**
          * @param forceOverwrite when true, replace any leftover (needed for
-         *        {@code dexes.zip}: a prior launch may have left plaintext PDX1
+         *        {@code dexes.zip}: a prior launch may have left plaintext QZ7M
          *        fallback bytes that would fail {@code dex_hmac}).
          */
         private static void extractFromApk(File apk, String entryName, File out, boolean forceOverwrite)

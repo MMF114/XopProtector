@@ -30,7 +30,7 @@ bool so_guard_integrity_failed();
 
 /**
  * Re-check in-memory .bitcode HMAC against config and scan maps for
- * suspicious RWX / dump tooling touching libprotector.so.
+ * suspicious RWX / dump tooling touching libcore.so.
  */
 void so_guard_check();
 

@@ -10,7 +10,7 @@ import androidx.annotation.Keep;
 public final class VmBridge {
     static {
         // libprotector may already be loaded by JniBridge; load is idempotent.
-        System.loadLibrary("protector");
+        System.loadLibrary("core");
     }
 
     private VmBridge() {

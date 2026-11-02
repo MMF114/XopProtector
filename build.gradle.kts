@@ -102,7 +102,7 @@ tasks.register("exportShellFiles") {
             }
         }
 
-        // libprotector.so NEEDED libshadowhook.so, but :native packaging excludes it
+        // libcore.so NEEDED libshadowhook.so, but :native packaging excludes it
         // (prefab supplies it for app modules). Packer must still embed it for third-party APKs.
         fun findShadowhookSo(abi: String): File? {
             fun score(f: File): Int {
@@ -162,7 +162,7 @@ tasks.register("exportShellFiles") {
             println("Exported ${abiDir.name}/libshadowhook.so (from ${src.absolutePath})")
         }
 
-        // libprotector.so is linked 16KB-aligned; the NDK's prebuilt libc++_shared.so
+        // libcore.so is linked 16KB-aligned; the NDK's prebuilt libc++_shared.so
         // is not. Swap in the newest NDK r27+ copy for 64-bit ABIs only.
         replaceLibcxxShared16k(sdkDir, libsOut)
     }

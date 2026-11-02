@@ -511,7 +511,7 @@ public class ProxyApplication extends Application {
         invalidateIfApkChanged(outDir, new File(info.sourceDir));
 
         File outZip = new File(outDir, DEXES_ZIP);
-        // Warm: reuse prepatched classes*.dex; skip re-copying PDX1/dexes.zip.
+        // Warm: reuse prepatched classes*.dex; skip re-copying QZ7M/dexes.zip.
         boolean warm = DexMerger.hasWarmCache(outDir);
         if (!warm && !(outZip.exists() && outZip.length() > 0)) {
             try (ZipFile apk = new ZipFile(info.sourceDir)) {

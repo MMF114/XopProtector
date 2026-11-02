@@ -998,7 +998,7 @@ public class PackerMain {
                     if ("libc++_shared.so".equals(so.getName())) {
                         requireShellLibcxx16k(abi, dest);
                     }
-                    if ("libprotector.so".equals(so.getName()) && kWrap != null) {
+                    if ("libcore.so".equals(so.getName()) && kWrap != null) {
                         String hmacHex = SoSectionEncryptor.encrypt(dest, kWrap, kMaster, kHmac);
                         bitcodeHmac.put(abi, hmacHex);
                         hasProtector = true;
@@ -1020,7 +1020,7 @@ public class PackerMain {
             throw new IllegalStateException("shell libs not found under " + shellHint);
         }
         if (bitcodeHmac.isEmpty()) {
-            throw new IllegalStateException("no libprotector.so embedded — cannot HMAC .bitcode");
+            throw new IllegalStateException("no libcore.so embedded — cannot HMAC .bitcode");
         }
         return bitcodeHmac;
     }
@@ -1092,13 +1092,13 @@ public class PackerMain {
     }
 
     /**
-     * Replace plaintext dexes.zip with PDX1 || AES-GCM(zip).
+     * Replace plaintext dexes.zip with QZ7M || AES-GCM(zip).
      * Runtime decrypt_dexes_zip_file undoes this before DexMerger.
      */
     private static void encryptDexesZipPdx1(File dexZip, byte[] dexAesKey) throws Exception {
         byte[] plain = Files.readAllBytes(dexZip.toPath());
         if (plain.length < 4 || plain[0] != 'P' || plain[1] != 'K') {
-            throw new IllegalStateException("dexes.zip is not a ZIP before PDX1 wrap");
+            throw new IllegalStateException("dexes.zip is not a ZIP before QZ7M wrap");
         }
         byte[] enc = CryptoUtils.aesGcmEncrypt(dexAesKey, plain);
         // Wipe plaintext zip bytes from heap ASAP (best-effort).
@@ -1110,7 +1110,7 @@ public class PackerMain {
         out[3] = '1';
         System.arraycopy(enc, 0, out, 4, enc.length);
         Files.write(dexZip.toPath(), out);
-        System.out.println("Encrypted dexes.zip as PDX1 size=" + out.length);
+        System.out.println("Encrypted dexes.zip as QZ7M size=" + out.length);
     }
 
     /** ABI dirs already present under unpack/lib (from the input APK). */

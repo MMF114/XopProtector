@@ -238,7 +238,7 @@ bool decrypt_dexes_zip_file(const std::string& path, const uint8_t key[16]) {
 
     std::vector<uint8_t> plain;
     if (!decrypt_pdx1_to_plain(buf, key, plain)) {
-        PLOGE("dexes.zip PDX1 decrypt failed");
+        PLOGE("dexes.zip QZ7M decrypt failed");
         memset(buf.data(), 0, buf.size());
         return false;
     }
@@ -261,7 +261,7 @@ bool decrypt_dexes_zip_file(const std::string& path, const uint8_t key[16]) {
             return false;
         }
     }
-    PLOGI("dexes.zip PDX1 decrypted (%zu bytes)", plain.size());
+    PLOGI("dexes.zip QZ7M decrypted (%zu bytes)", plain.size());
     return true;
 }
 
@@ -286,7 +286,7 @@ bool decrypt_and_extract_dexes(const std::string& zip_path,
         PLOGI("dexes.zip plaintext ZIP (legacy extract)");
     } else {
         if (key == nullptr || !decrypt_pdx1_to_plain(buf, key, plain)) {
-            PLOGE("PDX1 decrypt for extract failed");
+            PLOGE("QZ7M decrypt for extract failed");
             memset(buf.data(), 0, buf.size());
             return false;
         }
@@ -309,7 +309,7 @@ bool decrypt_and_extract_dexes(const std::string& zip_path,
 
     if (!ok) {
         // This process only: write plaintext zip so Java DexMerger can unzip.
-        // Next launch force-extracts PDX1 from the APK (must not HMAC this leftover).
+        // Next launch force-extracts QZ7M from the APK (must not HMAC this leftover).
         PLOGW("native dex extract failed — falling back to plaintext zip path");
         return decrypt_dexes_zip_file(zip_path, key);
     }

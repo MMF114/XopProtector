@@ -24,7 +24,7 @@ class IntegrityHmacTest {
     @Test
     void fileHmacChangesWhenOneByteFlips() {
         byte[] key = sequential((byte) 0x11, 32);
-        byte[] pdx1 = "PDX1-fixture-bytes".getBytes(StandardCharsets.US_ASCII);
+        byte[] pdx1 = "QZ7M-fixture-bytes".getBytes(StandardCharsets.US_ASCII);
         String a = CryptoUtils.toHex(CryptoUtils.hmacSha256(key, pdx1));
         pdx1[pdx1.length - 1] ^= 1;
         String b = CryptoUtils.toHex(CryptoUtils.hmacSha256(key, pdx1));

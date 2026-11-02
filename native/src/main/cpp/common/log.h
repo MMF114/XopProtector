@@ -2,7 +2,7 @@
 
 #include <android/log.h>
 
-#define PROTECTOR_LOG_TAG "protector"
+#define PROTECTOR_LOG_TAG "core"
 
 #ifdef NDEBUG
 // Release build: strip all diagnostic logs — they leak protection internals.

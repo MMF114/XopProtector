@@ -907,7 +907,7 @@ PROTECTOR_ENCRYPT void init_app(JNIEnv* env, jclass, jstring protector_dir_j,
         }
     };
 
-    // Decrypt PDX1-wrapped dexes.zip and extract classes*.dex in one pass
+    // Decrypt QZ7M-wrapped dexes.zip and extract classes*.dex in one pass
     // (no plaintext ZIP on disk). Warm starts already have prepatched dexes.
     if (!warm && state.config.dex_aes_key.size() == 16) {
         std::string sokeys_path = dir + "/sokeys.bin";

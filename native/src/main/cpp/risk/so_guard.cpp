@@ -42,7 +42,7 @@ static bool resolve_self(Dl_info* info, std::string* so_path) {
         *so_path = find_so_path(info->dli_fname);
     }
     if (so_path->empty()) {
-        *so_path = find_so_path("libprotector.so");
+        *so_path = find_so_path("libcore.so");
     }
     return !so_path->empty();
 }

@@ -24,7 +24,7 @@ public final class SoSectionEncryptor {
 
     /**
      * Embed the same {@code K_master} (and {@code K_wrap}) into one ABI's
-     * {@code libprotector.so}. All ABIs must receive identical master bytes.
+     * {@code libcore.so}. All ABIs must receive identical master bytes.
      *
      * @return lowercase hex HMAC-SHA256 of the post-wipe plaintext {@code .bitcode}
      *         (K_master slot zeroed), matching runtime after {@code recover_k_master}.

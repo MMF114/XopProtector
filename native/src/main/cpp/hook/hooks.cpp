@@ -184,13 +184,13 @@ static void* resolve_art_symbol(const char* sym) {
     if (!find_loaded_art(&art)) {
         strncpy(art.path, art_lib_path_fallback(), sizeof(art.path) - 1);
         // Without load bias we cannot safely relocate — try bias 0 only for ET_EXEC (never).
-        __android_log_print(ANDROID_LOG_ERROR, "protector",
+        __android_log_print(ANDROID_LOG_ERROR, "core",
                             "libart.so not in dl_iterate_phdr; path=%s", art.path);
         return nullptr;
     }
     void* addr = resolve_elf_symbol(art.path, art.load_bias, sym);
     if (!addr) {
-        __android_log_print(ANDROID_LOG_ERROR, "protector",
+        __android_log_print(ANDROID_LOG_ERROR, "core",
                             "symbol %s not in %s bias=0x%zx", sym, art.path,
                             (size_t)art.load_bias);
     }

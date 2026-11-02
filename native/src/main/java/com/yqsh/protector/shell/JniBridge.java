@@ -5,7 +5,7 @@ import androidx.annotation.Keep;
 @Keep
 public final class JniBridge {
     static {
-        System.loadLibrary("protector");
+        System.loadLibrary("core");
     }
 
     private JniBridge() {
@@ -84,7 +84,7 @@ public final class JniBridge {
     public static native void installBusinessSoHooks();
 
     /**
-     * Decrypt a PAS1 asset blob ({@code PAS1 || AES-GCM}). Prefer
+     * Decrypt a RA4T asset blob ({@code RA4T || AES-GCM}). Prefer
      * {@link ProtectorAssets#open(android.content.Context, String)}.
      */
     public static native byte[] decryptAssetBlob(byte[] pas1Blob);

@@ -99,7 +99,7 @@ static void decrypt_section(const char* section_name, int temp_prot, int target_
         }
     }
     if (so_path.empty()) {
-        so_path = find_so_path("libprotector.so");
+        so_path = find_so_path("libcore.so");
     }
     if (so_path.empty()) {
         PLOGE("cannot resolve protector.so path");
@@ -194,19 +194,19 @@ void init_protector() {
     protector::risk::so_guard_init();
 #ifndef NDEBUG
     if (!crypto::aes_self_test()) {
-        __android_log_print(ANDROID_LOG_ERROR, "protector", "AES self-test failed");
+        __android_log_print(ANDROID_LOG_ERROR, "core", "AES self-test failed");
         abort();
     }
     if (!crypto::hkdf_self_test()) {
-        __android_log_print(ANDROID_LOG_ERROR, "protector", "HKDF self-test failed");
+        __android_log_print(ANDROID_LOG_ERROR, "core", "HKDF self-test failed");
         abort();
     }
     if (!crypto::apk_sign_self_test()) {
-        __android_log_print(ANDROID_LOG_ERROR, "protector", "APK v2/v3 cert parse self-test failed");
+        __android_log_print(ANDROID_LOG_ERROR, "core", "APK v2/v3 cert parse self-test failed");
         abort();
     }
     if (!crypto::key_ladder_self_test()) {
-        __android_log_print(ANDROID_LOG_ERROR, "protector", "key ladder self-test failed");
+        __android_log_print(ANDROID_LOG_ERROR, "core", "key ladder self-test failed");
         abort();
     }
 #endif
@@ -216,7 +216,7 @@ void init_protector() {
     //
     // Do NOT install business SO dlopen/openat hooks here. bytehook_hook_all on
     // dlopen makes the linker attribute subsequent loads (e.g. vendor
-    // mapper.*.so for HWUI) to libprotector.so's app namespace (clns-*),
+    // mapper.*.so for HWUI) to libcore.so's app namespace (clns-*),
     // which cannot open /vendor/lib64/hw/* and aborts RenderThread /
     // GraphicBufferAllocator on OEM Android 12+ (MTK / Xiaomi / …).
     // Install those hooks only after sokeys are loaded (see engine.cpp) when
