@@ -2999,10 +2999,10 @@ static void* dlopen_keyed_plan(const KeyedOpenPlan& plan, int flags,
                 return release_if_text_still_cipher(h, plan);
             }
             unmark_keyed_mapped_plain(plan.base);
-            __android_log_print(ANDROID_LOG_WARN, "protector.SoLoad",
+            __android_log_print(ANDROID_LOG_WARN, "core.SoLoad",
                     "L2 fail %s err=%s", plan.linker_name.c_str(), dlerror());
         } else {
-            __android_log_print(ANDROID_LOG_WARN, "protector.SoLoad",
+            __android_log_print(ANDROID_LOG_WARN, "core.SoLoad",
                     "L2 open fd fail %s errno=%d", plan.content_path.c_str(), errno);
         }
         // FD was not used. Never path-load linker_name (ciphertext extract).
@@ -3063,7 +3063,7 @@ static void* dlopen_keyed_plan(const KeyedOpenPlan& plan, int flags,
         if (!plan.in_memory_decrypt) {
             unmark_keyed_mapped_plain(plan.base);
         }
-        __android_log_print(ANDROID_LOG_WARN, "protector.SoLoad",
+        __android_log_print(ANDROID_LOG_WARN, "core.SoLoad",
                 "L2 path-load fail %s err=%s — libc dlopen",
                 plan.linker_name.c_str(), dlerror());
     }
@@ -4153,7 +4153,7 @@ static int scrub_forbidden_from_so_plain(const std::string& out_dir) {
         std::string path = out_dir + "/" + name;
         if (unlink(path.c_str()) == 0) {
             n++;
-            __android_log_print(ANDROID_LOG_WARN, "protector.SoLoad",
+            __android_log_print(ANDROID_LOG_WARN, "core.SoLoad",
                     "scrub Class S from so_plain: %s", name.c_str());
         }
     }
