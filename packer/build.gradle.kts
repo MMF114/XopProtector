@@ -12,7 +12,7 @@ tasks.jar {
     archiveVersion.set("0.7.9")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     manifest {
-        attributes["Main-Class"] = "com.yqsh.protector.packer.PackerMain"
+        attributes["Main-Class"] = "com.android.core.packer.PackerMain"
     }
     from({
         configurations.runtimeClasspath.get().filter { it.exists() }.map {

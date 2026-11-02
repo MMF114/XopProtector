@@ -14,9 +14,9 @@
 #include <atomic>
 #include <string>
 
-#define JNI_BRIDGE "com/yqsh/protector/shell/JniBridge"
-#define JNI_VMBRIDGE "com/yqsh/protector/shell/VmBridge"
-#define JNI_PROXY_APP "com/yqsh/protector/shell/ProxyApplication"
+#define JNI_BRIDGE "com/android/core/shell/JniBridge"
+#define JNI_VMBRIDGE "com/android/core/shell/VmBridge"
+#define JNI_PROXY_APP "com/android/core/shell/ProxyApplication"
 
 static jclass g_jni_bridge_class = nullptr;
 static jclass g_proxy_app_class = nullptr;

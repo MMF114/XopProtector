@@ -161,7 +161,7 @@ static bool calibrate_jni_entry_offset(JNIEnv* env) {
     if (g_jni_entry_offset != 0) {
         return true;
     }
-    jclass bridge = env->FindClass("com/yqsh/protector/shell/JniBridge");
+    jclass bridge = env->FindClass("com/android/core/shell/JniBridge");
     if (bridge == nullptr) {
         env->ExceptionClear();
         return false;

@@ -715,7 +715,7 @@ PROTECTOR_ENCRYPT static bool commit_method_write(
 }
 
 /** Base junk class path without L/; illegal clones end with a digit before ';'. */
-static constexpr const char kJunkClassPath[] = "com/yqsh/protector/junkcode/JunkClass";
+static constexpr const char kJunkClassPath[] = "com/android/core/junkcode/JunkClass";
 
 PROTECTOR_ENCRYPT void patch_class(const char* descriptor, const void* dex_file, const void* dex_class_def) {
     auto& state = runtime_state();

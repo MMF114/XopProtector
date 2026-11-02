@@ -282,11 +282,11 @@ static void junk_code_protect(JNIEnv* env) {
 
     // Resolve JunkClass WITHOUT initializing it. JNI FindClass runs <clinit>;
     // Class.forName(name, false, cl) does not.
-    static constexpr const char kJunkClassJava[] = "com.yqsh.protector.junkcode.JunkClass";
+    static constexpr const char kJunkClassJava[] = "com.android.core.junkcode.JunkClass";
 
     jobject cl = nullptr;
     // Prefer JniBridge's ClassLoader (available during early ACF bootstrap).
-    jclass bridgeCls = env->FindClass("com/yqsh/protector/shell/JniBridge");
+    jclass bridgeCls = env->FindClass("com/android/core/shell/JniBridge");
     if (bridgeCls != nullptr) {
         jclass classCls = env->GetObjectClass(bridgeCls);
         jmethodID getCl = env->GetMethodID(classCls, "getClassLoader",

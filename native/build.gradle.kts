@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.yqsh.protector"
+    namespace = "com.android.core"
     compileSdk = 34
 
     defaultConfig {
