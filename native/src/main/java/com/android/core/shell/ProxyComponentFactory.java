@@ -15,7 +15,7 @@ import java.io.File;
 @Keep
 @TargetApi(28)
 public class ProxyComponentFactory extends AppComponentFactory {
-    private static final String TAG = "protector.ProxyACF";
+    private static final String TAG = "core.ProxyACF";
     private static volatile boolean bootstrapped;
 
     /** True after {@link FileBootstrap} completed (Application path can skip heavy work). */
@@ -88,7 +88,7 @@ public class ProxyComponentFactory extends AppComponentFactory {
             // Warm: classes*.dex already prepatched — skip re-copying/decrypting dexes.zip.
             boolean warm = DexMerger.hasWarmCache(codeCache);
             if (!warm) {
-                extractFromApk(apk, "assets/protector/dexes.zip", new File(codeCache,
+                extractFromApk(apk, "assets/sysdata/dexes.zip", new File(codeCache,
                         StrEnc.d(new byte[]{
                                 0x3e, 0x24, 0x14, 0x6e, 0x45, (byte)0xf3, (byte)0x82, (byte)0x8e, (byte)0xf2
                         })), true);
@@ -105,14 +105,14 @@ public class ProxyComponentFactory extends AppComponentFactory {
                             (byte)0xc6, 0x3a
                     }));
             if (!warm || !codeBin.isFile() || codeBin.length() == 0) {
-                extractFromApk(apk, "assets/protector/code.bin", codeBin);
+                extractFromApk(apk, "assets/sysdata/code.bin", codeBin);
             }
             if (!warm || !configJson.isFile() || configJson.length() == 0) {
-                extractFromApk(apk, "assets/protector/config.json", configJson);
+                extractFromApk(apk, "assets/sysdata/config.json", configJson);
             }
             // Optional — present when packer used --protect-so (needed each launch for keys).
             try {
-                extractFromApk(apk, "assets/protector/sokeys.bin", new File(codeCache,
+                extractFromApk(apk, "assets/sysdata/sokeys.bin", new File(codeCache,
                         StrEnc.d(new byte[]{
                                 0x29, 0x2e, 0x07, 0x6e, 0x4f, (byte)0xae, (byte)0xd6, (byte)0x85,
                                 (byte)0xeb, (byte)0xc7
@@ -122,7 +122,7 @@ public class ProxyComponentFactory extends AppComponentFactory {
             }
             // Optional — Phase 3 NetGuard
             try {
-                extractFromApk(apk, "assets/protector/netguard.json", new File(codeCache,
+                extractFromApk(apk, "assets/sysdata/netguard.json", new File(codeCache,
                         StrEnc.d(new byte[]{
                                 0x34, 0x24, 0x18, 0x6c, 0x43, (byte)0xbc, (byte)0x8a, (byte)0x83,
                                 (byte)0xac, (byte)0xc3, 0x27, 0x1c, 0x70
@@ -131,7 +131,7 @@ public class ProxyComponentFactory extends AppComponentFactory {
             }
             // Optional — packer so_text_diag for runtime .text integrity checks
             try {
-                extractFromApk(apk, "assets/protector/so_text_diag.json", new File(codeCache,
+                extractFromApk(apk, "assets/sysdata/so_text_diag.json", new File(codeCache,
                         StrEnc.d(new byte[]{
                                 0x29, 0x2e, 0x33, 0x7f, 0x53, (byte)0xa5, (byte)0x8c, (byte)0xb8,
                                 (byte)0xe6, (byte)0xc0, 0x35, 0x14, 0x30, 0x6f, 0x53, (byte)0xa0,

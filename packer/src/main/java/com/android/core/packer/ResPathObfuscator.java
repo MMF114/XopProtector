@@ -420,7 +420,7 @@ public final class ResPathObfuscator {
     }
 
     private static void writeMapping(File unpackDir, Map<String, String> mapping) throws IOException {
-        File protector = new File(unpackDir, "assets/protector");
+        File protector = new File(unpackDir, "assets/sysdata");
         if (!protector.exists() && !protector.mkdirs()) {
             throw new IOException("cannot mkdir " + protector);
         }

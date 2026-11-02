@@ -21,7 +21,7 @@ import java.util.List;
  */
 @Keep
 public final class ApplicationReplacer {
-    private static final String TAG = "protector.AppReplace";
+    private static final String TAG = "core.AppReplace";
 
     private ApplicationReplacer() {
     }

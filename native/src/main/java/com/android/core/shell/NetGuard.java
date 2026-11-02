@@ -33,13 +33,13 @@ import javax.net.ssl.X509TrustManager;
 
 /**
  * Phase 3 — optional HTTPS certificate pinning helpers + proxy/VPN heuristics.
- * Config: {@code assets/protector/netguard.json} (copied to protector cache).
+ * Config: {@code assets/sysdata/netguard.json} (copied to protector cache).
  * <p>
  * App signing check ({@link JniBridge#verifySignature}) is <em>not</em> HTTPS pinning.
  */
 @Keep
 public final class NetGuard {
-    private static final String TAG = "protector.NetGuard";
+    private static final String TAG = "core.NetGuard";
     private static final String CONFIG_NAME = "netguard.json";
 
     private static final AtomicBoolean installed = new AtomicBoolean(false);
@@ -208,14 +208,14 @@ public final class NetGuard {
     @Nullable
     private static String readConfigText(Context context) {
         try {
-            File cache = new File(context.getCodeCacheDir(), "protector");
+            File cache = new File(context.getCodeCacheDir(), "sysdata");
             File f = new File(cache, CONFIG_NAME);
             if (f.isFile() && f.length() > 0) {
                 return readFile(f);
             }
         } catch (Exception ignored) {
         }
-        try (InputStream in = context.getAssets().open("protector/" + CONFIG_NAME)) {
+        try (InputStream in = context.getAssets().open("sysdata/" + CONFIG_NAME)) {
             return readStream(in);
         } catch (Exception e) {
             return null;

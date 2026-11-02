@@ -1044,7 +1044,7 @@ public final class BusinessSoProtector {
     }
 
     /**
-     * JSON size report for assets/protector/size_report.json and stdout.
+     * JSON size report for assets/sysdata/size_report.json and stdout.
      */
     public static String buildSizeReportJson(long inputBytes, long outputBytes,
                                             ProtectResult so,
@@ -1088,7 +1088,7 @@ public final class BusinessSoProtector {
     }
 
     /**
-     * Portable plaintext-.text digests for runtime A/B (assets/protector/so_text_diag.json).
+     * Portable plaintext-.text digests for runtime A/B (assets/sysdata/so_text_diag.json).
      * Does not change sokeys; diagnostic only.
      */
     public static String buildSoTextDiagJson(ProtectResult so) {

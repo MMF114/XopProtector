@@ -43,12 +43,12 @@ public final class KeyLadder {
             0x6c, (byte) 0x85, (byte) 0xea, 0x27, 0x54, (byte) 0x9b, 0x0f, (byte) 0xd6
     };
 
-    public static final String LABEL_DEX = "xop-dex-v1";
-    public static final String LABEL_INSN = "xop-insn-v1";
-    public static final String LABEL_SO = "xop-so-v1";
-    public static final String LABEL_SOWARM = "xop-sowarm-v1";
-    public static final String LABEL_ASSETS = "xop-assets-v1";
-    public static final String LABEL_HMAC = "xop-hmac-v1";
+    public static final String LABEL_DEX = "kdx7";
+    public static final String LABEL_INSN = "kin7";
+    public static final String LABEL_SO = "kso7";
+    public static final String LABEL_SOWARM = "ksw7";
+    public static final String LABEL_ASSETS = "kas7";
+    public static final String LABEL_HMAC = "khm7";
 
     private KeyLadder() {
     }

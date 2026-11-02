@@ -752,7 +752,7 @@ void on_load(JavaVM* vm) {
     }
     // Linker lock released — safe to install bytehook / Dobby linker hooks.
     protector::init_protector();
-    PLOGI("protector native on_load, sdk=%d", runtime_state().sdk_level);
+    PLOGI("core native on_load, sdk=%d", runtime_state().sdk_level);
 }
 
 PROTECTOR_ENCRYPT void init_app(JNIEnv* env, jclass, jstring protector_dir_j,
@@ -1063,7 +1063,7 @@ jstring read_application_name(JNIEnv* env, jclass) {
 }
 
 jstring native_version(JNIEnv* env, jclass) {
-    return env->NewStringUTF("protector-native/0.7.7");
+    return env->NewStringUTF("core/1.0");
 }
 
 jboolean environment_degraded(JNIEnv*, jclass) {

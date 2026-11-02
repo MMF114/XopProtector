@@ -13,7 +13,7 @@ import java.lang.reflect.Method;
  */
 @Keep
 final class HiddenApiBypass {
-    private static final String TAG = "protector.HiddenApi";
+    private static final String TAG = "core.HiddenApi";
     private static boolean attempted;
 
     private HiddenApiBypass() {

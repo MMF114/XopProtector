@@ -66,22 +66,22 @@ bool derive_app_keys(const uint8_t master[32], const uint8_t cert_sha256[32],
         return false;
     }
     memset(out, 0, sizeof(*out));
-    if (!hkdf_labeled(master, cert_sha256, "xop-dex-v1", package_name, out->dex, 16)) {
+    if (!hkdf_labeled(master, cert_sha256, "kdx7", package_name, out->dex, 16)) {
         return false;
     }
-    if (!hkdf_labeled(master, cert_sha256, "xop-insn-v1", package_name, out->insn, 16)) {
+    if (!hkdf_labeled(master, cert_sha256, "kin7", package_name, out->insn, 16)) {
         return false;
     }
-    if (!hkdf_labeled(master, cert_sha256, "xop-so-v1", package_name, out->so, 16)) {
+    if (!hkdf_labeled(master, cert_sha256, "kso7", package_name, out->so, 16)) {
         return false;
     }
-    if (!hkdf_labeled(master, cert_sha256, "xop-sowarm-v1", package_name, out->sowarm, 16)) {
+    if (!hkdf_labeled(master, cert_sha256, "ksw7", package_name, out->sowarm, 16)) {
         return false;
     }
-    if (!hkdf_labeled(master, cert_sha256, "xop-assets-v1", package_name, out->assets, 16)) {
+    if (!hkdf_labeled(master, cert_sha256, "kas7", package_name, out->assets, 16)) {
         return false;
     }
-    if (!hkdf_labeled(master, cert_sha256, "xop-hmac-v1", package_name, out->hmac, 32)) {
+    if (!hkdf_labeled(master, cert_sha256, "khm7", package_name, out->hmac, 32)) {
         return false;
     }
     return true;

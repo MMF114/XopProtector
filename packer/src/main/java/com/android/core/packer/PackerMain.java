@@ -50,7 +50,7 @@ import java.util.zip.ZipOutputStream;
 
 /**
  * Minimal packer CLI:
- * extract method insns -> write code.bin -> hollow dexes into assets/protector/dexes.zip
+ * extract method insns -> write code.bin -> hollow dexes into assets/sysdata/dexes.zip
  * replace Application with ProxyApplication -> embed shell dex + so ->
  * optional sign (default: leave unsigned for the caller to sign).
  */
@@ -704,7 +704,7 @@ public class PackerMain {
                     + " op_count=" + Pvm2Morph.OP_COUNT
                     + " imm_xor=on");
 
-            File assetsProtector = new File(unpack, "assets/protector");
+            File assetsProtector = new File(unpack, "assets/sysdata");
             assetsProtector.mkdirs();
 
             // Extract & hollow / True-VMP selected methods (default: payment auto-VMP only)

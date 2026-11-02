@@ -15,12 +15,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * Phase 2A — encrypt app {@code assets/**} (excluding {@code assets/protector/**}).
- * Ciphertext layout: {@code assets/protector/aenc/<relpath>} = {@code RA4T || AES-GCM}.
- * Index: {@code assets/protector/assets.map} (one relative path per line).
+ * Phase 2A — encrypt app {@code assets/**} (excluding {@code assets/sysdata/**}).
+ * Ciphertext layout: {@code assets/sysdata/aenc/<relpath>} = {@code RA4T || AES-GCM}.
+ * Index: {@code assets/sysdata/assets.map} (one relative path per line).
  */
 public final class AssetsEncryptor {
-    public static final String AENC_DIR = "protector/aenc";
+    public static final String AENC_DIR = "sysdata/aenc";
     public static final String MAP_NAME = "assets.map";
     /** Magic: Protector ASset v1 */
     public static final byte[] MAGIC = {'P', 'A', 'S', '1'};
@@ -69,7 +69,7 @@ public final class AssetsEncryptor {
         int workTotal = 0;
         for (Path abs : files) {
             String rel = assetsRoot.toPath().relativize(abs).toString().replace('\\', '/');
-            if (rel.startsWith("protector/") || rel.equals("protector")) {
+            if (rel.startsWith("sysdata/") || rel.equals("sysdata")) {
                 continue;
             }
             workTotal++;
@@ -82,7 +82,7 @@ public final class AssetsEncryptor {
 
         for (Path abs : files) {
             String rel = assetsRoot.toPath().relativize(abs).toString().replace('\\', '/');
-            if (rel.startsWith("protector/") || rel.equals("protector")) {
+            if (rel.startsWith("sysdata/") || rel.equals("sysdata")) {
                 continue;
             }
             // AGP may place baseline profiles under assets/dexopt — leave for ART.
@@ -116,7 +116,7 @@ public final class AssetsEncryptor {
 
         pruneEmptyDirs(assetsRoot);
 
-        File protectorDir = new File(assetsRoot, "protector");
+        File protectorDir = new File(assetsRoot, "sysdata");
         if (!protectorDir.exists() && !protectorDir.mkdirs()) {
             throw new IOException("cannot mkdir " + protectorDir);
         }

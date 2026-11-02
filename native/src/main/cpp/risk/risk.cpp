@@ -158,7 +158,7 @@ PROTECTOR_ENCRYPT void crash_sigill() {
     PLOGE("risk: sigill reason=%s", g_crash_reason);
     abort();
 #else
-    __android_log_print(ANDROID_LOG_ERROR, "protector.risk", "sigill reason=%s", g_crash_reason);
+    __android_log_print(ANDROID_LOG_ERROR, "core.risk", "sigill reason=%s", g_crash_reason);
     // udf/#0 on arm64 → SIGILL; attacker can catch but not easily resume
     __builtin_trap();
 #endif
@@ -169,7 +169,7 @@ PROTECTOR_ENCRYPT void crash_sigsegv() {
     PLOGE("risk: sigsegv reason=%s", g_crash_reason);
     abort();
 #else
-    __android_log_print(ANDROID_LOG_ERROR, "protector.risk", "sigsegv reason=%s", g_crash_reason);
+    __android_log_print(ANDROID_LOG_ERROR, "core.risk", "sigsegv reason=%s", g_crash_reason);
     // Null deref → SIGSEGV. Different signal, different handler bypass.
     volatile int* p = nullptr;
     *p = 0xDEAD;

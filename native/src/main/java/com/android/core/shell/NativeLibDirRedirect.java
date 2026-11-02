@@ -43,7 +43,7 @@ import java.util.List;
  */
 @Keep
 final class NativeLibDirRedirect {
-    private static final String TAG = "protector.SoDir";
+    private static final String TAG = "core.SoDir";
 
     private NativeLibDirRedirect() {
     }

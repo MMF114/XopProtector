@@ -29,7 +29,7 @@ import java.util.zip.ZipOutputStream;
  */
 @Keep
 public final class DexScanCompat {
-    private static final String TAG = "protector.DexScan";
+    private static final String TAG = "core.DexScan";
     static final String FACADE_ZIP = "scan_facade.zip";
     private static final String FACADE_STAMP = "scan_facade.stamp";
     private static boolean installed;

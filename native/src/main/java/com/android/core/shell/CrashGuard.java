@@ -14,7 +14,7 @@ import androidx.annotation.Keep;
  */
 @Keep
 public final class CrashGuard {
-    private static final String TAG = "protector.CrashGuard";
+    private static final String TAG = "core.CrashGuard";
     private static volatile boolean installed;
 
     private CrashGuard() {

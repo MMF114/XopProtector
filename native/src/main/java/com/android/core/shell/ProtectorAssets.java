@@ -16,11 +16,11 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * Phase 2A — read business assets encrypted by {@code --encrypt-assets}.
- * Ciphertext lives at {@code assets/protector/aenc/&lt;relpath&gt;} (RA4T).
+ * Ciphertext lives at {@code assets/sysdata/aenc/&lt;relpath&gt;} (RA4T).
  */
 @Keep
 public final class ProtectorAssets {
-    private static final String AENC_PREFIX = "protector/aenc/";
+    private static final String AENC_PREFIX = "sysdata/aenc/";
 
     private ProtectorAssets() {
     }

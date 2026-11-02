@@ -132,7 +132,7 @@ public final class ProtectOptions {
     public boolean enableResProtect;
 
     /**
-     * Phase 2A — encrypt {@code assets/**} (excl. {@code assets/protector/**}).
+     * Phase 2A — encrypt {@code assets/**} (excl. {@code assets/sysdata/**}).
      * Default off. CLI: {@code --encrypt-assets}.
      * App must use {@code ProtectorAssets} (no AssetManager hook). Desktop UI hidden.
      */

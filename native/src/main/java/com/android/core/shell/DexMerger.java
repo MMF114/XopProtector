@@ -21,7 +21,7 @@ import java.util.zip.ZipFile;
 
 @Keep
 public final class DexMerger {
-    private static final String TAG = "protector.DexMerger";
+    private static final String TAG = "core.DexMerger";
     private static final String PREPATCHED_MARK = ".prepatched";
     private static boolean merged;
 

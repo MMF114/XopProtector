@@ -22,7 +22,7 @@ import java.util.Map;
  */
 @Keep
 public final class ChannelReader {
-    private static final String TAG = "protector.Channel";
+    private static final String TAG = "core.Channel";
     /** Same as Meituan Walle {@code APK_CHANNEL_BLOCK_ID}. */
     public static final int CHANNEL_BLOCK_ID = 0x71777777;
 
