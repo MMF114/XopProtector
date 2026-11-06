@@ -960,7 +960,7 @@ public class PackerMain {
             Set<String> targetAbis = listTargetAbis(libRoot);
             // No native libs in input: keep :native abiFilters defaults.
             if (targetAbis.isEmpty()) {
-                targetAbis = Set.of("armeabi-v7a", "arm64-v8a");
+                targetAbis = Set.of("arm64-v8a");
                 System.out.println("No lib/<abi> in input; embedding shell for " + targetAbis);
             } else {
                 System.out.println("Embedding shell libs for input ABIs: " + targetAbis);
@@ -1010,11 +1010,19 @@ public class PackerMain {
                 }
             }
             if (!missingShellAbis.isEmpty()) {
-                throw new IllegalStateException(
-                        "Input APK needs shell libs for ABI(s) " + missingShellAbis
-                                + " but --shell-dir has none. Build :native for those ABIs "
-                                + "or strip unsupported ABIs from the input APK. shell="
-                                + shellLibs.getAbsolutePath());
+                for (String abi : missingShellAbis) {
+                    File unsupported = new File(libRoot, abi);
+                    if (unsupported.isDirectory()) {
+                        deleteRecursively(unsupported);
+                        System.out.println("Stripped unsupported ABI: " + abi
+                                + " (no shell libs under " + shellLibs.getAbsolutePath() + ")");
+                    }
+                }
+                if (bitcodeHmac.isEmpty()) {
+                    throw new IllegalStateException(
+                            "Input APK has no ABI covered by shell libs. Build :native for those ABIs. shell="
+                                    + shellLibs.getAbsolutePath());
+                }
             }
         } else {
             throw new IllegalStateException("shell libs not found under " + shellHint);
