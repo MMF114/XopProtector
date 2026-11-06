@@ -34,7 +34,7 @@ android {
                     args += "-DPROTECTOR_LLVM_OBF_FLAGS=${obfFlags.replace(',', ';')}"
                 }
                 arguments(*args.toTypedArray())
-                abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
+                abiFilters += listOf("arm64-v8a")
             }
         }
     }
